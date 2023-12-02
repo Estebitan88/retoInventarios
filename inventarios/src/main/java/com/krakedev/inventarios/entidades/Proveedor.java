@@ -3,7 +3,7 @@ package com.krakedev.inventarios.entidades;
 public class Proveedor {
 
 	private String identificador;
-	private String tipoDocumento;
+	private TipoDocumento tipoDocumento;
 	private String nombre;
 	private String telefono;
 	private String correo;
@@ -13,7 +13,7 @@ public class Proveedor {
 
 	}
 
-	public Proveedor(String identificador, String tipoDocumento, String nombre, String telefono, String correo,
+	public Proveedor(String identificador, TipoDocumento tipoDocumento, String nombre, String telefono, String correo,
 			String direccion) {
 		super();
 		this.identificador = identificador;
@@ -32,11 +32,11 @@ public class Proveedor {
 		this.identificador = identificador;
 	}
 
-	public String getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(String tipoDocumento) {
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 
@@ -77,5 +77,4 @@ public class Proveedor {
 		return "Proveedor [identificador=" + identificador + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre
 				+ ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + "]";
 	}
-
 }
