@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.krakedev.inventarios.entidades.Categoria;
 import com.krakedev.inventarios.entidades.Producto;
+import com.krakedev.inventarios.entidades.Proveedor;
 import com.krakedev.inventarios.entidades.UnidadDeMedida;
 import com.krakedev.inventarios.excepciones.KrakeDevException;
 import com.krakedev.inventarios.utils.ConexionBDD;
@@ -26,8 +27,7 @@ public class ProductosBDD {
 			con = ConexionBDD.obtenerConexion();
 			ps = con.prepareStatement("select prod.codigo_prod, prod.nombre as nombre_producto,\r\n"
 					+ "udm.nombre as nombre_udm, udm.descripcion as descripcion_udm,\r\n"
-					+ "cast(prod.precio_venta as decimal(6,2)), prod.tiene_iva,"
-					+ "cast (prod.coste as decimal(5,4)), "
+					+ "cast(prod.precio_venta as decimal(6,2)), prod.tiene_iva," + "cast (prod.coste as decimal(5,4)), "
 					+ "prod.categoria,cat.nombre as nombre_categoria,\r\n" + "stock\r\n"
 					+ "from productos prod,unidades_medida udm, categorias cat\r\n" + "where prod.udm = udm.nombre \r\n"
 					+ "and prod.categoria =cat.codigo_cat\r\n" + "and upper (prod.nombre)like ?");
@@ -78,6 +78,40 @@ public class ProductosBDD {
 		}
 
 		return productos;
+	}
+
+	public void insertar(Producto producto) throws KrakeDevException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement("insert into productos (nombre,udm,precio_venta,tiene_iva,coste,categoria,stock) "
+					+ "values (?,?,?,?,?,?,?);");
+			ps.setString(1, producto.getNombre());
+			ps.setString(2, producto.getUnidadMedida().getNombre());
+			ps.setBigDecimal(3, producto.getPrecioVenta().abs());
+			ps.setBoolean(4, producto.isTieneIva());
+			ps.setBigDecimal(5, producto.getCoste().abs());
+			ps.setInt(6, producto.getCategoria().getCodigo());
+			ps.setInt(7, producto.getStock());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("Error al insertar productos. Detalle:" + e.getErrorCode());
+		} catch (KrakeDevException e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
 	}
 
 }
