@@ -36,6 +36,7 @@ public class ServiciosPedidos {
 		PedidosBDD pedidoBDD = new PedidosBDD();
 		try {
 			pedidoBDD.editar(pedido);
+			pedidoBDD.actualizarRecibido(pedido);
 			return Response.ok().build();
 		} catch (Exception e) {
 			e.printStackTrace();

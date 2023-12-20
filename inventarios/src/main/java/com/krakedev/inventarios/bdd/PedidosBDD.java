@@ -6,11 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.krakedev.inventarios.entidades.DetallePedido;
+import com.krakedev.inventarios.entidades.HistorialStock;
 import com.krakedev.inventarios.entidades.Pedido;
+import com.krakedev.inventarios.entidades.Producto;
 import com.krakedev.inventarios.excepciones.KrakeDevException;
 import com.krakedev.inventarios.utils.ConexionBDD;
 
@@ -108,20 +111,64 @@ public class PedidosBDD {
 			DetallePedido det;
 			for (int i = 0; i < detallesPedidos.size(); i++) {
 				det = detallesPedidos.get(i);
-				psDet = con
-						.prepareStatement("update detalle_pedido set cabecera_pedido=?, cantidad_recibida =?, subtotal=? where codigo=?");
-				
+				psDet = con.prepareStatement(
+						"update detalle_pedido set cabecera_pedido=?, cantidad_recibida =?, subtotal=? where codigo=?");
+
 				psDet.setInt(1, pedido.getCodigo());
 				psDet.setInt(2, det.getCantidadRecibida());
-				
+
 				BigDecimal pv = det.getProducto().getPrecioVenta();
 				BigDecimal cantidad = new BigDecimal(det.getCantidadRecibida());
 				BigDecimal subtotal = pv.multiply(cantidad);
 				psDet.setBigDecimal(3, subtotal);
-				
+
 				psDet.setInt(4, det.getCodigo());
 
 				psDet.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("Error al insertar productos. Detalle:" + e.getErrorCode());
+		} catch (KrakeDevException e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+
+	public void actualizarRecibido(Pedido pedido) throws KrakeDevException {
+		Connection con = null;
+		PreparedStatement psHis = null;
+
+
+		Date fechaActual = new Date();
+		Timestamp fechaHoraActual = new Timestamp(fechaActual.getTime());
+		Producto prod=new Producto();
+
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ArrayList<DetallePedido> detallesPedidos = pedido.getDetalles();
+			DetallePedido det=new DetallePedido();
+			for (int i = 0; i < detallesPedidos.size(); i++) {
+				det = detallesPedidos.get(i);
+				psHis = con.prepareStatement(
+						"insert into historial_stock(fecha,referencia,producto,cantidad)" + "values(?,?,?,?);");
+
+				psHis.setTimestamp(1, fechaHoraActual);
+				psHis.setString(2, "Pedido " + pedido.getCodigo() );
+				psHis.setInt(3,det.getProducto().getCodigo());
+				psHis.setInt(4, det.getCantidadRecibida());
+
+				psHis.executeUpdate();
 			}
 
 		} catch (SQLException e) {
