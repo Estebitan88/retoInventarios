@@ -20,7 +20,6 @@
     <fullyQualifiedTypeName name="javax.ws.rs.core.MediaType"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.bdd.ProveedoresBDD"/>
     <fullyQualifiedTypeName name="javax.ws.rs.core.Response"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.CategoriaUDM"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.UnidadDeMedida"/>
@@ -28,17 +27,24 @@
     <fullyQualifiedTypeName name="com.krakedev.inventarios.bdd.ProductosBDD"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.Proveedor"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.EstadoPedido"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.beans.Statement"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.bdd.PedidosBDD"/>
     <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.Pedido"/>
-    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.Producto"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.DetallePedido"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
     <fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.security.Timestamp"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.HistorialStock"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.Producto"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.DetallePedido"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.bdd.VentasBDD"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.DetalleVentas"/>
+    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+    <fullyQualifiedTypeName name="com.krakedev.inventarios.entidades.Venta"/>
 </qualifiedTypeNameHistroy>
