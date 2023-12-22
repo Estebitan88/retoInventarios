@@ -11,6 +11,12 @@ public class Categoria {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Categoria(int codigo, String nombre) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+	}
+
 	public Categoria(int codigo, String nombre, Categoria categoriaPadre) {
 		super();
 		this.codigo = codigo;
@@ -40,6 +46,11 @@ public class Categoria {
 
 	public void setCategoriaPadre(Categoria categoriaPadre) {
 		this.categoriaPadre = categoriaPadre;
+	}
+
+	@Override
+	public String toString() {
+		return "Categoria [codigo=" + codigo + ", nombre=" + nombre + ", categoriaPadre=" + categoriaPadre + "]";
 	}
 
 }

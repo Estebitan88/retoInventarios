@@ -64,4 +64,10 @@ public class HistorialStock {
 		this.cantidad = cantidad;
 	}
 
+	@Override
+	public String toString() {
+		return "HistorialStock [codigo=" + codigo + ", fecha=" + fecha + ", referencia=" + referencia + ", producto="
+				+ producto + ", cantidad=" + cantidad + "]";
+	}
+
 }

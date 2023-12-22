@@ -32,4 +32,9 @@ public class CategoriaUDM {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "CategoriaUDM [codigo=" + codigo + ", nombre=" + nombre + "]";
+	}
+
 }

@@ -3,6 +3,9 @@ package com.krakedev.inventarios.entidades;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pedido {
 
 	private int codigo;
@@ -11,6 +14,28 @@ public class Pedido {
 	private EstadoPedido estado;
 
 	private ArrayList<DetallePedido> detalles;
+
+	public Pedido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Pedido(int codigo, Proveedor proveedor, Date fecha, EstadoPedido estado, ArrayList<DetallePedido> detalles) {
+		super();
+		this.codigo = codigo;
+		this.proveedor = proveedor;
+		this.fecha = fecha;
+		this.estado = estado;
+		this.detalles = detalles;
+	}
+
+	public Pedido(int codigo, Proveedor proveedor, Date fecha, EstadoPedido estado) {
+		super();
+		this.codigo = codigo;
+		this.proveedor = proveedor;
+		this.fecha = fecha;
+		this.estado = estado;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -51,7 +76,11 @@ public class Pedido {
 	public void setDetalles(ArrayList<DetallePedido> detalles) {
 		this.detalles = detalles;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Pedido [codigo=" + codigo + ", proveedor=" + proveedor + ", fecha=" + fecha + ", estado=" + estado
+				+ ", detalles=" + detalles + "]";
+	}
 
 }

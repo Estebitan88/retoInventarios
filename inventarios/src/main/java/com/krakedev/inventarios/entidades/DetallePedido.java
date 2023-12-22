@@ -2,6 +2,9 @@ package com.krakedev.inventarios.entidades;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DetallePedido {
 
 	private int codigo;
@@ -57,6 +60,13 @@ public class DetallePedido {
 
 	public void setCantidadRecibida(int cantidadRecibida) {
 		this.cantidadRecibida = cantidadRecibida;
+	}
+
+	@Override
+	public String toString() {
+		return "DetallePedido [codigo=" + codigo + ", cabecera=" + cabecera + ", producto=" + producto
+				+ ", cantidadSolicitada=" + cantidadSolicitada + ", subtotal=" + subtotal + ", cantidadRecibida="
+				+ cantidadRecibida + "]";
 	}
 
 }

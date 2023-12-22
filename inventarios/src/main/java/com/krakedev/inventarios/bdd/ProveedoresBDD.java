@@ -25,8 +25,7 @@ public class ProveedoresBDD {
 			ps = con.prepareStatement(
 					"select prov.identificador,prov.tipo_de_documento,td.descripcion,prov.nombre,prov.telefono,prov.correo,prov.direccion "
 							+ "from proveedores prov, tipo_de_documento td "
-							+ "where prov.tipo_de_documento=td.codigo_tipo_documento " 
-							+ "and upper(nombre) like ?");
+							+ "where prov.tipo_de_documento=td.codigo_tipo_documento " + "and upper(nombre) like ?");
 			ps.setString(1, "%" + subcadena.toUpperCase() + "%");
 			rs = ps.executeQuery();
 
@@ -55,25 +54,26 @@ public class ProveedoresBDD {
 
 		return proveedores;
 	}
-	
+
 	public void insertar(Proveedor proveedor) throws KrakeDevException {
 		Connection con = null;
-		PreparedStatement ps= null;
+		PreparedStatement ps = null;
 		try {
 			con = ConexionBDD.obtenerConexion();
-			 ps = con.prepareStatement("insert into proveedores (identificador,tipo_de_documento,nombre,telefono,correo,direccion) "
-			 		+ "values (?,?,?,?,?,?);");
+			ps = con.prepareStatement(
+					"insert into proveedores (identificador,tipo_de_documento,nombre,telefono,correo,direccion) "
+							+ "values (?,?,?,?,?,?);");
 			ps.setString(1, proveedor.getIdentificador());
 			ps.setString(2, proveedor.getTipoDocumento().getCodigo());
 			ps.setString(3, proveedor.getNombre());
 			ps.setString(4, proveedor.getTelefono());
 			ps.setString(5, proveedor.getCorreo());
 			ps.setString(6, proveedor.getDireccion());
-			
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new KrakeDevException("Error al insertar proveedores. Detalle:"+e.getErrorCode());
+			throw new KrakeDevException("Error al insertar proveedores. Detalle:" + e.getErrorCode());
 		} catch (KrakeDevException e) {
 			throw e;
 		} finally {
@@ -87,6 +87,50 @@ public class ProveedoresBDD {
 			}
 
 		}
+	}
+
+	public ArrayList<Proveedor> buscarPorIdentificacion(String subcadena) throws KrakeDevException {
+		ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Proveedor proveedor = null;
+		try {
+			con = ConexionBDD.obtenerConexion();
+			ps = con.prepareStatement(
+					"select prov.identificador,prov.tipo_de_documento,td.descripcion,prov.nombre,prov.telefono,prov.correo,prov.direccion "
+							+ "from proveedores prov, tipo_de_documento td where identificador like ?");
+			System.out.println(subcadena);
+			ps.setString(1, subcadena.toUpperCase());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String identificador = rs.getString("identificador");
+				String codTipoDeDocumento = rs.getString("tipo_de_documento");
+				String descripcionTD = rs.getString("descripcion");
+				String nombre = rs.getString("nombre");
+				String telefono = rs.getString("telefono");
+				String correo = rs.getString("correo");
+				String direccion = rs.getString("direccion");
+
+				TipoDocumento td = new TipoDocumento(codTipoDeDocumento, descripcionTD);
+
+				proveedor = new Proveedor(identificador, td, nombre, telefono, correo, direccion);
+				System.out.println(proveedor);
+				proveedores.add(proveedor);
+
+			}
+
+		} catch (KrakeDevException e) {
+			e.printStackTrace();
+			throw e;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new KrakeDevException("error al consultar. Detalle:" + e.getMessage());
+		}
+
+		return proveedores;
 	}
 
 }

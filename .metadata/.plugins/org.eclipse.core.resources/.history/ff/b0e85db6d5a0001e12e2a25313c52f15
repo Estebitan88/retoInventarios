@@ -1,0 +1,8 @@
+package com.krakedev.inventarios.entidades;
+
+public class EstadoPedido {
+
+	private int codigoEstado;
+	private String descripcion;
+
+}

@@ -85,4 +85,11 @@ public class DetalleVentas {
 		this.subtotalConIva = subtotalConIva;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleVentas [codigo=" + codigo + ", cabecera=" + cabecera + ", producto=" + producto + ", cantidad="
+				+ cantidad + ", precioVenta=" + precioVenta + ", subtotal=" + subtotal + ", subtotalConIva="
+				+ subtotalConIva + "]";
+	}
+
 }

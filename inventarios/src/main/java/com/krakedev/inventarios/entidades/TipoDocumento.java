@@ -36,4 +36,6 @@ public class TipoDocumento {
 		return "TipoDocumento [codigo=" + codigo + ", descripcion=" + descripcion + "]";
 	}
 
+	
+
 }

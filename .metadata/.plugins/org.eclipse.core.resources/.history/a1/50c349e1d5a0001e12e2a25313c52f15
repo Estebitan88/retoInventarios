@@ -1,0 +1,33 @@
+package com.krakedev.inventarios.entidades;
+
+public class EstadoPedido {
+
+	private int codigoEstado;
+	private String descripcion;
+	
+	
+	
+	
+	public EstadoPedido(int codigoEstado) {
+		super();
+		this.codigoEstado = codigoEstado;
+	}
+	public int getCodigoEstado() {
+		return codigoEstado;
+	}
+	public void setCodigoEstado(int codigoEstado) {
+		this.codigoEstado = codigoEstado;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	
+	
+
+	
+	
+}

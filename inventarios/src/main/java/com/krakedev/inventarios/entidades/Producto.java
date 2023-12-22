@@ -2,6 +2,9 @@ package com.krakedev.inventarios.entidades;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Producto {
 
 	private int codigo;
@@ -12,6 +15,21 @@ public class Producto {
 	private BigDecimal coste;
 	private Categoria categoria;
 	private int stock;
+
+	public Producto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Producto(int codigo, String nombre, BigDecimal precioVenta, boolean tieneIva, BigDecimal coste, int stock) {
+		super();
+		this.codigo = codigo;
+		Nombre = nombre;
+		this.precioVenta = precioVenta;
+		this.tieneIva = tieneIva;
+		this.coste = coste;
+		this.stock = stock;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -76,5 +94,15 @@ public class Producto {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [codigo=" + codigo + ", Nombre=" + Nombre + ", unidadMedida=" + unidadMedida + ", precioVenta="
+				+ precioVenta + ", tieneIva=" + tieneIva + ", coste=" + coste + ", categoria=" + categoria + ", stock="
+				+ stock + "]";
+	}
+
+	
+	
 
 }

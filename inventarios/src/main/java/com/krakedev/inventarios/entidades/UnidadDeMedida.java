@@ -6,6 +6,18 @@ public class UnidadDeMedida {
 	private String descripcion;
 	private CategoriaUDM categoriaUnidadDeMedida;
 
+	public UnidadDeMedida() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UnidadDeMedida(String nombre, String descripcion, CategoriaUDM categoriaUnidadDeMedida) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.categoriaUnidadDeMedida = categoriaUnidadDeMedida;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -28,6 +40,12 @@ public class UnidadDeMedida {
 
 	public void setCategoriaUnidadDeMedida(CategoriaUDM categoriaUnidadDeMedida) {
 		this.categoriaUnidadDeMedida = categoriaUnidadDeMedida;
+	}
+
+	@Override
+	public String toString() {
+		return "UnidadDeMedida [nombre=" + nombre + ", descripcion=" + descripcion + ", categoriaUnidadDeMedida="
+				+ categoriaUnidadDeMedida + "]";
 	}
 
 }

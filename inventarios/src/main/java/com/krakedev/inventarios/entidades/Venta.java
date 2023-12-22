@@ -76,5 +76,10 @@ public class Venta {
 		this.detalles = detalles;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Venta [codigo=" + codigo + ", fecha=" + fecha + ", totalSinIva=" + totalSinIva + ", iva=" + iva
+				+ ", total=" + total + ", detalles=" + detalles + "]";
+	}
+
 }

@@ -1,5 +1,8 @@
 package com.krakedev.inventarios.entidades;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Proveedor {
 
 	private String identificador;
@@ -11,6 +14,20 @@ public class Proveedor {
 
 	public Proveedor() {
 
+	}
+
+	public Proveedor(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
+	public Proveedor(String identificador, String nombre, String telefono, String correo, String direccion) {
+		super();
+		this.identificador = identificador;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.correo = correo;
+		this.direccion = direccion;
 	}
 
 	public Proveedor(String identificador, TipoDocumento tipoDocumento, String nombre, String telefono, String correo,
@@ -77,4 +94,6 @@ public class Proveedor {
 		return "Proveedor [identificador=" + identificador + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre
 				+ ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + "]";
 	}
+
+	
 }
